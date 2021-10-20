@@ -1,0 +1,7 @@
+{
+  "name": "pwa-with-ionic-and-vue",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
