@@ -13,11 +13,12 @@
 <script>
 import Card from "../../components/Card.vue";
 import FormsSignup from "../../components/forms/Signup.vue";
+import { IonPage, IonContent } from "@ionic/vue";
 
 export default {
   name: "signup",
 
-  components: { Card, FormsSignup },
+  components: { Card, FormsSignup, IonPage, IonContent },
 };
 </script>
 

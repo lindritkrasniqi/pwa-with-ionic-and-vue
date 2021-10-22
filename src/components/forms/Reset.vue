@@ -35,10 +35,27 @@
 
 
 <script>
-import { loadingController } from "@ionic/core";
+import {
+  loadingController,
+  IonCol,
+  IonItem,
+  IonLabel,
+  IonInput,
+  IonText,
+  IonButton,
+} from "@ionic/vue";
 import { useRoute } from "vue-router";
 
 export default {
+  components: {
+    IonCol,
+    IonItem,
+    IonLabel,
+    IonInput,
+    IonText,
+    IonButton,
+  },
+
   data: () => {
     const route = useRoute();
 

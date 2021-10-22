@@ -49,11 +49,30 @@
 
 
 <script>
-import { loadingController } from "@ionic/core";
+import {
+  loadingController,
+  IonRow,
+  IonCol,
+  IonItem,
+  IonLabel,
+  IonInput,
+  IonText,
+  IonButton,
+} from "@ionic/vue";
 import { useRouter } from "vue-router";
 
 export default {
   data: () => ({ credentials: { email: "", password: "" } }),
+
+  components: {
+    IonRow,
+    IonCol,
+    IonItem,
+    IonLabel,
+    IonInput,
+    IonText,
+    IonButton,
+  },
 
   methods: {
     async submit() {

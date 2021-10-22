@@ -12,7 +12,16 @@
 </template>
 
 <script>
+import {
+  IonCard,
+  IonCardHeader,
+  IonCardContent,
+  IonCardTitle,
+} from "@ionic/vue";
+
 export default {
   props: ["color", "header", "variant"],
+
+  components: { IonCard, IonCardHeader, IonCardContent, IonCardTitle },
 };
 </script>

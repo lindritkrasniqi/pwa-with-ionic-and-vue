@@ -13,11 +13,12 @@
 <script>
 import Card from "../../components/Card.vue";
 import FormsForgot from "../../components/forms/Forgot.vue";
+import { IonPage, IonContent } from "@ionic/vue";
 
 export default {
   name: "forgot",
 
-  components: { Card, FormsForgot },
+  components: { Card, FormsForgot, IonContent, IonPage },
 };
 </script>
 

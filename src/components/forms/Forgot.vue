@@ -31,10 +31,29 @@
 
 
 <script>
-import { loadingController } from "@ionic/core";
+import {
+  loadingController,
+  IonRow,
+  IonCol,
+  IonItem,
+  IonLabel,
+  IonInput,
+  IonText,
+  IonButton,
+} from "@ionic/vue";
 
 export default {
   data: () => ({ credentials: { email: "" } }),
+
+  components: {
+    IonRow,
+    IonCol,
+    IonItem,
+    IonLabel,
+    IonInput,
+    IonText,
+    IonButton,
+  },
 
   methods: {
     async submit() {
