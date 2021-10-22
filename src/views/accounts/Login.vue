@@ -3,6 +3,10 @@
     <ion-content>
       <div id="container">
         <card header="Login">
+          <template #logo>
+            <logo />
+          </template>
+
           <forms-login />
         </card>
       </div>
@@ -13,12 +17,13 @@
 <script>
 import Card from "../../components/Card.vue";
 import FormsLogin from "../../components/forms/Login.vue";
+import Logo from "../../components/Logo.vue";
 import { IonPage, IonContent } from "@ionic/vue";
 
 export default {
   name: "Login",
 
-  components: { Card, FormsLogin, IonPage, IonContent },
+  components: { Card, FormsLogin, IonPage, IonContent, Logo },
 };
 </script>
 
