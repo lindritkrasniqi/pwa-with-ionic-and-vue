@@ -44,7 +44,6 @@ import {
   IonText,
   IonButton,
 } from "@ionic/vue";
-import { useRoute } from "vue-router";
 
 export default {
   components: {
@@ -57,13 +56,10 @@ export default {
   },
 
   data: () => {
-    const route = useRoute();
-
     return {
       credentials: {
         password: "",
         password_confirmation: "",
-        ...route.query,
       },
     };
   },
@@ -75,6 +71,8 @@ export default {
       });
 
       await loading.present();
+
+      this.credentials = { ...this.credentials, ...this.$route.query };
 
       this.axios
         .post("api/reset", this.credentials)
