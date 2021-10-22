@@ -2,7 +2,11 @@
   <ion-page>
     <ion-content>
       <div id="container">
-        <card header="Forgot password" color="primary" variant="danger">
+        <card header="Forgot password">
+          <template #logo>
+            <logo />
+          </template>
+
           <forms-forgot />
         </card>
       </div>
@@ -12,12 +16,14 @@
 
 <script>
 import Card from "../../components/Card.vue";
+import Logo from "../../components/Logo.vue";
 import FormsForgot from "../../components/forms/Forgot.vue";
+import { IonPage, IonContent } from "@ionic/vue";
 
 export default {
   name: "forgot",
 
-  components: { Card, FormsForgot },
+  components: { Card, FormsForgot, IonContent, IonPage, Logo },
 };
 </script>
 

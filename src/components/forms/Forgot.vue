@@ -1,25 +1,61 @@
 <template>
   <form @submit.prevent="submit">
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" v-model="credentials.email" />
+    <ion-col>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input
+          type="email"
+          :value="credentials.email"
+          @input="credentials.email = $event.target.value"
+        />
+      </ion-item>
       <ion-text v-if="$store.state.errors.error.email" color="danger">
         <small>
-          <b>{{ $store.state.errors.error.email[0] }}</b>
+          <b>{{ $store.state.errors.error.email.toString() }}</b>
         </small>
       </ion-text>
-    </ion-item>
+    </ion-col>
 
-    <ion-button color="light" type="submit">Send</ion-button>
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit">Send</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-router-link
+          @click.prevent="$router.push({ name: 'accounts-login' })"
+        >
+          I think, I remember!
+        </ion-router-link>
+      </ion-col>
+    </ion-row>
   </form>
 </template>
 
 
 <script>
-import { loadingController } from "@ionic/core";
+import {
+  loadingController,
+  IonRow,
+  IonCol,
+  IonItem,
+  IonLabel,
+  IonInput,
+  IonText,
+  IonButton,
+} from "@ionic/vue";
 
 export default {
   data: () => ({ credentials: { email: "" } }),
+
+  components: {
+    IonRow,
+    IonCol,
+    IonItem,
+    IonLabel,
+    IonInput,
+    IonText,
+    IonButton,
+  },
 
   methods: {
     async submit() {
@@ -31,7 +67,10 @@ export default {
 
       this.axios
         .post("api/forgot", this.credentials)
-        .then(() => loading.dismiss())
+        .then(() => {
+          this.$router.push({ name: "accounts-login" });
+          loading.dismiss();
+        })
         .catch(() => loading.dismiss());
     },
   },

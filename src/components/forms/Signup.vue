@@ -1,48 +1,104 @@
 <template>
   <form @submit.prevent="submit">
-    <ion-item>
-      <ion-label position="floating">Name</ion-label>
-      <ion-input type="name" v-model="credentials.name" />
+    <ion-col>
+      <ion-item>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input
+          type="name"
+          :value="credentials.name"
+          @input="credentials.name = $event.target.value"
+        />
+      </ion-item>
       <ion-text v-if="$store.state.errors.error.name" color="danger">
         <small>
-          <b>{{ $store.state.errors.error.name[0] }}</b>
+          <b>{{ $store.state.errors.error.name.toString() }}</b>
         </small>
       </ion-text>
-    </ion-item>
+    </ion-col>
 
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" v-model="credentials.email" />
+    <ion-col>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input
+          type="email"
+          :value="credentials.email"
+          @input="credentials.email = $event.target.value"
+        />
+      </ion-item>
       <ion-text v-if="$store.state.errors.error.email" color="danger">
         <small>
-          <b>{{ $store.state.errors.error.email[0] }}</b>
+          <b>{{ $store.state.errors.error.email.toString() }}</b>
         </small>
       </ion-text>
-    </ion-item>
+    </ion-col>
 
-    <ion-item>
-      <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" v-model="credentials.password" />
+    <ion-col>
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input
+          type="password"
+          :value="credentials.password"
+          @input="credentials.password = $event.target.value"
+        />
+      </ion-item>
       <ion-text v-if="$store.state.errors.error.password" color="danger">
         <small>
-          <b>{{ $store.state.errors.error.password[0] }}</b>
+          <b>{{ $store.state.errors.error.password.toString() }}</b>
         </small>
       </ion-text>
-    </ion-item>
+    </ion-col>
 
-    <ion-item>
-      <ion-label position="floating">Password confirmation</ion-label>
-      <ion-input type="password" v-model="credentials.password_confirmation" />
-    </ion-item>
+    <ion-col>
+      <ion-item>
+        <ion-label position="floating">Password confirmation</ion-label>
+        <ion-input
+          type="password"
+          :value="credentials.password_confirmation"
+          @input="credentials.password_confirmation = $event.target.value"
+        />
+      </ion-item>
+    </ion-col>
 
-    <ion-button color="light" type="submit">Signup</ion-button>
+    <ion-row>
+      <ion-col>
+        <ion-router-link
+          @click.prevent="$router.push({ name: 'accounts-login' })"
+        >
+          Already, have an account?
+        </ion-router-link>
+      </ion-col>
+    </ion-row>
+
+    <ion-col>
+      <ion-button color="light" type="submit">Signup</ion-button>
+    </ion-col>
   </form>
 </template>
 
 
 <script>
-import { loadingController } from "@ionic/core";
+import {
+  loadingController,
+  IonRow,
+  IonCol,
+  IonItem,
+  IonLabel,
+  IonInput,
+  IonText,
+  IonButton,
+} from "@ionic/vue";
+
 export default {
+  components: {
+    IonRow,
+    IonCol,
+    IonItem,
+    IonLabel,
+    IonInput,
+    IonText,
+    IonButton,
+  },
+
   data: () => ({
     credentials: {
       name: "",
@@ -61,8 +117,12 @@ export default {
       await loading.present();
 
       this.axios
-        .post("api/signup", this.credentials)
-        .then(() => loading.dismiss())
+        .post("api/register", this.credentials)
+        .then(async () => {
+          await this.$store.dispatch("auth/login", this.credentials);
+          this.$router.push({ name: "home" });
+          loading.dismiss();
+        })
         .catch(() => loading.dismiss());
     },
   },

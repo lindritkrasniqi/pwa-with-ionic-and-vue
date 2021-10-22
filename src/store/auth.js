@@ -20,9 +20,9 @@ export const actions = {
 
     const res = (await axios.get("api/me")).data;
 
-    localStorage.setItem("user", res.user);
+    localStorage.setItem("user", JSON.stringify(res.data));
     localStorage.setItem("loggedIn", true);
-    commit("setUser", res.user);
+    commit("setUser", res.data);
   },
 
   async logout({ commit }) {
@@ -34,15 +34,18 @@ export const actions = {
   async ftechUser({ commit }) {
     const res = (await axios.get("me")).data;
 
-    await localStorage.setItem("user", res.user);
-    commit("setUser", res.user);
+    await localStorage.setItem("user", res.data);
+    commit("setUser", res.data);
   },
 };
 
 export const getters = {};
 
 export const mutations = {
-  setUser: (state, user) => (state.user = user),
+  setUser: (state, user) => {
+    state.loggedIn = true;
+    state.user = user;
+  },
   logout: (state) => {
     state.user = {};
     state.loggedIn = false;

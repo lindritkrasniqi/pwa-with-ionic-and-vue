@@ -2,7 +2,11 @@
   <ion-page>
     <ion-content>
       <div id="container">
-        <card header="Sign up" color="primary" variant="danger">
+        <card header="Sign up">
+          <template #logo>
+            <logo />
+          </template>
+
           <forms-signup />
         </card>
       </div>
@@ -12,12 +16,14 @@
 
 <script>
 import Card from "../../components/Card.vue";
+import Logo from "../../components/Logo.vue";
 import FormsSignup from "../../components/forms/Signup.vue";
+import { IonPage, IonContent } from "@ionic/vue";
 
 export default {
   name: "signup",
 
-  components: { Card, FormsSignup },
+  components: { Card, FormsSignup, IonPage, IonContent, Logo },
 };
 </script>
 

@@ -21,7 +21,8 @@
       <div id="container">
         <card header="Dashboard" color="primary" variant="danger">
           <ion-text>
-            Welcome, <i>{{ $store.state.auth.user.name }}</i>!
+            Welcome, <i>{{ $store.state.auth.user.name }}</i
+            >!
           </ion-text>
         </card>
       </div>
@@ -31,12 +32,32 @@
 
 <script>
 import Card from "../components/Card.vue";
-import { loadingController } from "@ionic/vue";
+import {
+  loadingController,
+  IonPage,
+  IonContent,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonButtons,
+  IonButton,
+  IonText,
+} from "@ionic/vue";
 
 export default {
   name: "Home",
 
-  components: { Card },
+  components: {
+    Card,
+    IonPage,
+    IonContent,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonButtons,
+    IonButton,
+    IonText,
+  },
 
   methods: {
     async logout() {
@@ -46,10 +67,11 @@ export default {
 
       loading.present();
 
-      this.$store
-        .dispatch("auth/logout")
-        .then(() => loading.dismiss())
-        .catch(() => loading.dismiss());
+      await this.$store.dispatch("auth/logout");
+
+      this.$router.push({ name: "accounts-login" });
+
+      loading.dismiss();
     },
   },
 };
