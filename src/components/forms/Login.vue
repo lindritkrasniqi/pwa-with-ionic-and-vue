@@ -15,21 +15,35 @@
         </small>
       </ion-text>
     </ion-col>
-    <ion-item>
-      <ion-label position="floating">Password</ion-label>
-      <ion-input
-        type="password"
-        :value="credentials.password"
-        @input="credentials.password = $event.target.value"
-      />
+
+    <ion-col>
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input
+          type="password"
+          :value="credentials.password"
+          @input="credentials.password = $event.target.value"
+        />
+      </ion-item>
       <ion-text v-if="$store.state.errors.error.password" color="danger">
         <small>
           <b>{{ $store.state.errors.error.password.toString() }}</b>
         </small>
       </ion-text>
-    </ion-item>
+    </ion-col>
 
-    <ion-button color="light" type="submit">Login</ion-button>
+    <ion-row>
+      <ion-col>
+        <ion-router-link href="accounts/forgot">
+          Forgot the password?
+        </ion-router-link>
+      </ion-col>
+    </ion-row>
+
+    <ion-col>
+      <ion-button color="light" type="submit">Login</ion-button>
+      <ion-button type="button" href="accounts/signup">Sign up</ion-button>
+    </ion-col>
   </form>
 </template>
 
