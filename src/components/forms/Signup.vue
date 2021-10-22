@@ -76,6 +76,8 @@
 
 <script>
 import { loadingController } from "@ionic/core";
+import { useRouter } from "vue-router";
+
 export default {
   data: () => ({
     credentials: {
@@ -88,6 +90,8 @@ export default {
 
   methods: {
     async submit() {
+      const router = useRouter();
+
       const loading = await loadingController.create({
         message: "Please wait...",
       });
@@ -96,7 +100,11 @@ export default {
 
       this.axios
         .post("api/register", this.credentials)
-        .then(() => loading.dismiss())
+        .then(async () => {
+          await this.$store.dispatch("auth/login", this.credentials);
+          router.push({ name: "home" });
+          loading.dismiss();
+        })
         .catch(() => loading.dismiss());
     },
   },

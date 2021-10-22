@@ -50,12 +50,15 @@
 
 <script>
 import { loadingController } from "@ionic/core";
+import { useRouter } from "vue-router";
 
 export default {
   data: () => ({ credentials: { email: "", password: "" } }),
 
   methods: {
     async submit() {
+      const router = useRouter();
+
       const loading = await loadingController.create({
         message: "Please wait...",
       });
@@ -66,7 +69,7 @@ export default {
         .dispatch("auth/login", this.credentials)
         .then(() => {
           loading.dismiss();
-          this.$router.push({ name: "home" });
+          router.push({ name: "home" });
         })
         .catch(() => loading.dismiss());
     },
