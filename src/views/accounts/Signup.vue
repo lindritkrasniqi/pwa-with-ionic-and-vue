@@ -2,7 +2,7 @@
   <ion-page>
     <ion-content>
       <div id="container">
-        <card header="Sign up" color="primary" variant="danger">
+        <card header="Sign up">
           <forms-signup />
         </card>
       </div>

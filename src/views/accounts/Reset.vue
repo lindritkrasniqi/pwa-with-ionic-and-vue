@@ -2,7 +2,7 @@
   <ion-page>
     <ion-content>
       <div id="container">
-        <card header="Reset your password" color="primary" variant="danger">
+        <card header="Reset password">
           <forms-reset />
         </card>
       </div>
