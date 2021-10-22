@@ -61,7 +61,9 @@
 
     <ion-row>
       <ion-col>
-        <ion-router-link href="accounts/login">
+        <ion-router-link
+          @click.prevent="$router.push({ name: 'accounts-login' })"
+        >
           Already, have an account?
         </ion-router-link>
       </ion-col>

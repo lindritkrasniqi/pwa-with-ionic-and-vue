@@ -34,7 +34,9 @@
 
     <ion-row>
       <ion-col>
-        <ion-router-link href="accounts/forgot">
+        <ion-router-link
+          @click.prevent="$router.push({ name: 'accounts-forgot' })"
+        >
           Forgot the password?
         </ion-router-link>
       </ion-col>
@@ -42,7 +44,12 @@
 
     <ion-col>
       <ion-button color="light" type="submit">Login</ion-button>
-      <ion-button type="button" href="accounts/signup">Sign up</ion-button>
+      <ion-button
+        type="button"
+        @click.prevent="$router.push({ name: 'accounts-signup' })"
+      >
+        Sign up
+      </ion-button>
     </ion-col>
   </form>
 </template>

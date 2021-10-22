@@ -21,7 +21,9 @@
         <ion-button type="submit">Send</ion-button>
       </ion-col>
       <ion-col>
-        <ion-router-link href="accounts/login">
+        <ion-router-link
+          @click.prevent="$router.push({ name: 'accounts-login' })"
+        >
           I think, I remember!
         </ion-router-link>
       </ion-col>
