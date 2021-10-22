@@ -43,9 +43,6 @@ import {
   IonButton,
   IonText,
 } from "@ionic/vue";
-import { useRouter } from "vue-router";
-
-const router = useRouter();
 
 export default {
   name: "Home",
@@ -72,7 +69,7 @@ export default {
 
       await this.$store.dispatch("auth/logout");
 
-      router.push({ name: "accounts-login" });
+      this.$router.push({ name: "accounts-login" });
 
       loading.dismiss();
     },

@@ -65,7 +65,10 @@ export default {
 
       this.axios
         .post("api/forgot", this.credentials)
-        .then(() => loading.dismiss())
+        .then(() => {
+          this.$router.push({ name: "accounts-login" });
+          loading.dismiss();
+        })
         .catch(() => loading.dismiss());
     },
   },

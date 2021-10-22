@@ -78,7 +78,15 @@ export default {
 
       this.axios
         .post("api/reset", this.credentials)
-        .then(() => loading.dismiss())
+        .then(() => {
+          this.store
+            .dispatch("auth/login", this.credentials)
+            .then(() => {
+              loading.dismiss();
+              this.$router.push({ name: "home" });
+            })
+            .catch(() => loading.dismiss());
+        })
         .catch(() => loading.dismiss());
     },
   },

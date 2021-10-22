@@ -59,7 +59,6 @@ import {
   IonText,
   IonButton,
 } from "@ionic/vue";
-import { useRouter } from "vue-router";
 
 export default {
   data: () => ({ credentials: { email: "", password: "" } }),
@@ -76,8 +75,6 @@ export default {
 
   methods: {
     async submit() {
-      const router = useRouter();
-
       const loading = await loadingController.create({
         message: "Please wait...",
       });
@@ -87,8 +84,8 @@ export default {
       this.$store
         .dispatch("auth/login", this.credentials)
         .then(() => {
+          this.$router.push({ name: "home" });
           loading.dismiss();
-          router.push({ name: "home" });
         })
         .catch(() => loading.dismiss());
     },

@@ -85,7 +85,6 @@ import {
   IonText,
   IonButton,
 } from "@ionic/vue";
-import { useRouter } from "vue-router";
 
 export default {
   components: {
@@ -109,8 +108,6 @@ export default {
 
   methods: {
     async submit() {
-      const router = useRouter();
-
       const loading = await loadingController.create({
         message: "Please wait...",
       });
@@ -121,7 +118,7 @@ export default {
         .post("api/register", this.credentials)
         .then(async () => {
           await this.$store.dispatch("auth/login", this.credentials);
-          router.push({ name: "home" });
+          this.$router.push({ name: "home" });
           loading.dismiss();
         })
         .catch(() => loading.dismiss());
