@@ -2,10 +2,14 @@
   <form @submit.prevent="submit">
     <ion-item>
       <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" v-model="credentials.email" />
+      <ion-input
+        type="email"
+        :value="credentials.email"
+        @input="credentials.email = $event.target.value"
+      />
       <ion-text v-if="$store.state.errors.error.email" color="danger">
         <small>
-          <b>{{ $store.state.errors.error.email[0] }}</b>
+          <b>{{ $store.state.errors.error.email.toString() }}</b>
         </small>
       </ion-text>
     </ion-item>

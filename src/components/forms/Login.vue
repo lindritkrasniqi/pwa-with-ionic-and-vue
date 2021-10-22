@@ -1,20 +1,30 @@
 <template>
   <form @submit.prevent="submit">
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" v-model="credentials.email" />
+    <ion-col>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input
+          type="email"
+          :value="credentials.email"
+          @input="credentials.email = $event.target.value"
+        />
+      </ion-item>
       <ion-text v-if="$store.state.errors.error.email" color="danger">
         <small>
-          <b>{{ $store.state.errors.error.email[0] }}</b>
+          <b>{{ $store.state.errors.error.email.toString() }}</b>
         </small>
       </ion-text>
-    </ion-item>
+    </ion-col>
     <ion-item>
       <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" v-model="credentials.password" />
+      <ion-input
+        type="password"
+        :value="credentials.password"
+        @input="credentials.password = $event.target.value"
+      />
       <ion-text v-if="$store.state.errors.error.password" color="danger">
         <small>
-          <b>{{ $store.state.errors.error.password[0] }}</b>
+          <b>{{ $store.state.errors.error.password.toString() }}</b>
         </small>
       </ion-text>
     </ion-item>

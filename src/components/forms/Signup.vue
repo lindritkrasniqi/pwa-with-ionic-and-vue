@@ -2,37 +2,53 @@
   <form @submit.prevent="submit">
     <ion-item>
       <ion-label position="floating">Name</ion-label>
-      <ion-input type="name" v-model="credentials.name" />
+      <ion-input
+        type="name"
+        :value="credentials.name"
+        @input="credentials.name = $event.target.value"
+      />
       <ion-text v-if="$store.state.errors.error.name" color="danger">
         <small>
-          <b>{{ $store.state.errors.error.name[0] }}</b>
+          <b>{{ $store.state.errors.error.name.toString() }}</b>
         </small>
       </ion-text>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" v-model="credentials.email" />
+      <ion-input
+        type="email"
+        :value="credentials.email"
+        @input="credentials.email = $event.target.value"
+      />
       <ion-text v-if="$store.state.errors.error.email" color="danger">
         <small>
-          <b>{{ $store.state.errors.error.email[0] }}</b>
+          <b>{{ $store.state.errors.error.email.toString() }}</b>
         </small>
       </ion-text>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" v-model="credentials.password" />
+      <ion-input
+        type="password"
+        :value="credentials.password"
+        @input="credentials.password = $event.target.value"
+      />
       <ion-text v-if="$store.state.errors.error.password" color="danger">
         <small>
-          <b>{{ $store.state.errors.error.password[0] }}</b>
+          <b>{{ $store.state.errors.error.password.toString() }}</b>
         </small>
       </ion-text>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Password confirmation</ion-label>
-      <ion-input type="password" v-model="credentials.password_confirmation" />
+      <ion-input
+        type="password"
+        :value="credentials.password_confirmation"
+        @input="credentials.password_confirmation = $event.target.value"
+      />
     </ion-item>
 
     <ion-button color="light" type="submit">Signup</ion-button>
